@@ -1,0 +1,508 @@
+/* Reset default browser styles */
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body font and background */
+body {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #f4c2f7;
+    background: linear-gradient(135deg, #360a48, #360133);
+}
+
+/* Header container */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background-color: #180a18;
+    color: rgb(190, 162, 196);
+    position: fixed; /* Keep header fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* Logo styling */
+.logo {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px; /* Using this font-size */
+    color: #907b9e; /* Using this color */
+    text-decoration: none;
+    text-shadow:
+        1px 1px 0 #000,
+        2px 2px 0 #000,
+        3px 3px 0 #000,
+        4px 4px 0 #000,
+        5px 5px 0 #222;
+}
+
+/* Navbar styling */
+.navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #cccccc;
+    font-family: 'Press Start 2P', cursive;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
+    display: inline-block;
+}
+
+/* Hover effect on nav links */
+.navbar a:hover {
+    transform: scale(1.2);
+    color: #00bcd4;
+    text-shadow: 0 0 5px #747e95;
+}
+
+/* Hero section container */
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 80px; /* Adjust based on header height */
+    overflow: hidden;
+    /* No blend mode or opacity here to avoid affecting children globally */
+}
+
+/* Specific styling for the large background image (img.png) */
+.hero-container img[src="img.png"] { /* Target img.png specifically */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%; /* Adjust as needed */
+    mix-blend-mode: soft-light; /* Apply blend mode only to this image */
+    opacity: 0.2;
+    filter: blur(0.5px) brightness(1.1);
+    z-index: 1; /* Below text and circular image */
+    pointer-events: none;
+}
+
+/* Typed text styling */
+#typed-text {
+    margin-top: 1px; /* Adjust as needed */
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.5rem;
+    color: #00bcd4;
+    position: absolute; /* Ensure it's positioned within hero-container */
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Above the background image */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.intro-text {
+  position: absolute;
+  top: 55%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: rgb(225, 164, 223);
+  font-size: 1.5rem;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Circular image container */
+.circular-image-container {
+    position: absolute;
+    top: 50%;
+    right: 5%; /* Adjust position from the right */
+    transform: translateY(-50%);
+    width: 300px; /* Adjust size as needed */
+    height: 300px; /* Must be the same as width for a perfect circle */
+    border-radius: 50%; /* Creates the circular shape */
+    overflow: hidden; /* Hides the part of the image outside the circle */
+    z-index: 3; /* Ensure it's above everything else */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
+    border: 3px solid #8a2be2; /* Optional border */
+    opacity: 1; /* Ensure full opacity */
+    mix-blend-mode: normal; /* Crucially set to normal for this container */
+}
+
+/* Image inside circular container */
+.circular-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the circle without distortion */
+    /* No blend modes or filters here unless specifically desired for the circular image itself */
+}
+
+
+.image-caption {
+    position: absolute;
+    top: calc(50% + 170px); /* Start below the image. 50% (image center) + half image height (100px) + some margin (15px) */
+    right:8.5%; 
+    transform: translateY(0); /* No vertical translation from here */
+    width: 200px; /* Same width as image container for alignment */
+    text-align: center; /* Align text to the right */
+    color: #f0def1; /* Use body text color or adjust */
+    font-family: "WDXL Lubrifont SC", sans-serif; /* A clear, retro-style font */
+    font-size: 1em; /* Adjust font size as needed */
+    line-height: 0.9;
+    z-index: 3; /* Ensure it's on top */
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Subtle glow */
+    animation: slideInFromBottom 1s ease-out 2.5s forwards; /* 1s duration, ease-out timing, stays at end state */
+}
+
+.image-caption p {
+    margin-bottom: 0.2em; /* Small spacing between lines */
+}
+
+
+
+.about-info {
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px; /* Limit width for better readability */
+    width: 90%; /* Responsive width */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    margin-bottom: 60px; /* Add this line to push it down */
+    margin-left: auto; /* Keeps it responsive to the left */
+    margin-right: auto;
+}
+
+.about-content {
+    min-height: calc(100vh - 80px); /* Full viewport height minus header height */
+    padding-top: 140px; /* To push content below the fixed header */
+    display: flex;
+    justify-content: center; /* Example: to center content if you add it later */
+    align-items: center; /* Example: to center content if you add it later */
+    flex-direction: column; /* Example: for stacking content */
+}
+
+.about-info p i {
+    margin-right: 15px; /* Space between icon and text */
+    color: #8a2be2; /* Icon color */
+    font-size: 1.4em; /* Larger icons */
+}
+
+.about-content p {
+    color: #f4c2f7;
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.about-info h1 {
+    text-align: center; /* Shift this header to the right */
+}
+
+
+
+/* NEW SEPARATE FOOTER STYLES */
+/* ------------------------------------------------------------- */
+.site-footer {
+    background-color: #000; /* Solid black background like the example */
+    color: #f4c2f7;
+    padding: 60px 50px 30px; /* Top, Left/Right, Bottom padding */
+    display: flex;
+    flex-direction: column; /* Stack main content area and copyright */
+    align-items: center; /* Center content horizontally */
+    margin-top: 100px; /* Space above the footer section from the content above (contact section) */
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Limit content width */
+    gap: 40px;
+    margin-bottom: 40px; /* Space below content before the line */
+}
+
+.footer-left-content {
+    flex: 2;
+    min-width: 280px;
+    padding-right: 20px;
+}
+
+.footer-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #fff; /* White color for consistency with example */
+    margin-bottom: 20px;
+}
+
+.footer-tagline {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-right-content {
+    flex: 1;
+    min-width: 200px;
+    text-align: right; /* Align content to the right */
+}
+
+.footer-social-title {
+    font-family: 'Press Start 2P', cursive; /* Assuming you want this font for headings */
+    font-size: 1.4em;
+    color: #fff; /* White color for consistency with example */
+    margin-bottom: 25px;
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: flex-end; /* Align icons to the right */
+    gap: 25px;
+}
+
+.footer-social-icons a {
+    color: #fff; /* White icons */
+    font-size: 2.2em;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+    transform: scale(1.2) translateY(-3px);
+    color: #00bcd4; /* Change color on hover */
+}
+
+.footer-bottom-line {
+    width: 100%;
+    max-width: 1200px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle line */
+    margin-bottom: 20px;
+}
+
+.contact-form-section {
+    background: linear-gradient(135deg, #360a48, #360133); /* Consistent with body/other sections */
+    padding: 100px 20px; /* Top/bottom padding, and some horizontal padding */
+    min-height: 80vh; /* Ensure it takes up a good amount of vertical space */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically if space allows */
+    color: #f4c2f7; /* Default text color */
+    margin-top: 0; /* Ensures it directly follows the previous section or has controlled margin */
+    padding-top: 100px; /* Adjust this to clear fixed header when scrolled to */
+}
+
+.contact-form-container {
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background for the form box */
+    padding: 40px 30px;
+    border-radius: 10px;
+    max-width: 600px; /* Limit width for readability */
+    width: 100%; /* Take full width up to max-width */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    text-align: center; /* Center heading and intro text */
+}
+
+.contact-form-heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.2em;
+    color: #00bcd4; /* Accent color */
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
+}
+
+.contact-form-intro {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1.1em;
+    color: #cccccc;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+.main-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between form groups */
+    align-items: center; /* Center form elements */
+}
+
+.form-group {
+    width: 100%; /* Take full width of the container */
+    text-align: left; /* Align labels/inputs to the left within their group */
+}
+
+.form-group label {
+    display: block; /* Make labels take full width */
+    margin-bottom: 8px;
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    color: #f4c2f7;
+    font-size: 1em;
+}
+
+/* Visually hidden class for accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #8a2be2; /* Border color */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
+    color: #f4c2f7; /* Text color inside input */
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999999; /* Placeholder text color */
+    opacity: 0.8;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00bcd4; /* Highlight border on focus */
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+}
+
+.submit-button {
+    background-color: #8a2be2; /* Purple button background */
+    color: #ffffff; /* White text */
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px; /* Space above the button */
+}
+
+.submit-button:hover {
+    background-color: #9a4cd2; /* Slightly lighter purple on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.projects-section {
+    background: linear-gradient(135deg, #360133, #360a48); /* Consistent background */
+    padding: 100px 50px; /* Ample padding */
+    color: #f4c2f7;
+    text-align: center; /* Center the heading and intro text */
+    margin-top: 0; /* Ensures it follows the previous section without extra space */
+    padding-top: 100px; /* Adjust to ensure fixed header doesn't hide content on scroll to this section */
+}
+
+.projects-heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.8em;
+    color: #00bcd4; /* Accent color */
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
+}
+
+.projects-intro {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1.1em;
+    color: #cccccc;
+    max-width: 800px;
+    margin: 0 auto 60px auto; /* Center and add space below intro */
+    line-height: 1.5;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 40px; /* Space between cards */
+    max-width: 1200px; /* Max width for the grid container */
+    margin: 0 auto; /* Center the grid */
+    padding: 20px;
+}
+
+.project-card {
+    background-color: rgba(0, 0, 0, 0.4); /* Dark semi-transparent background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: left; /* Align content inside card to left */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push links to bottom */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.project-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.6em;
+    color: #8a2be2; /* Purple accent for title */
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.4);
+}
+
+.project-description {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1em;
+    color: #f0def1;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Allows description to take available space */
+}
+
+.project-links {
+    margin-top: 15px; /* Space above links */
+    display: flex;
+    flex-wrap: wrap; /* Allow links to wrap */
+    gap: 15px; /* Space between links */
+}
+
+.project-link {
+    background-color: #00bcd4; /* Accent color for buttons */
+    color: #180a18; /* Dark text for contrast */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 8px; /* Space between text and icon */
+}
+
+.project-link:hover {
+    background-color: #00a0b0; /* Darker on hover */
+    transform: translateY(-2px);
+}
+
+.project-link i {
+    font-size: 1em; /* Icon size relative to text */
+}
