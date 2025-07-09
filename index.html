@@ -23,43 +23,35 @@
             <a href="#contact-section">Contact</a> </nav>
     </header>
 
-    <div class="hero-container">
-        <h1 id="typed-text"></h1> 
-        
-        <img src="img.png" alt="Blended Image">
-        <div class="circular-image-container">
-            <img src="ananya.jpg" alt="Circular Image">
-        </div>
-        <div class="image-caption">
-            <p>Electronics and Electrical Engineering</p>
-            <p>IIT Guwahati</p>
-            <p>Ex Maryite</p>
-        </div> 
-        <div class="intro-text">
-            <p>
-                I'm an engineering student at <strong>IIT Guwahati</strong>, majoring in <strong>Electronics and Electrical Engineering</strong>. <br><br>
-                I'm passionate about <strong>robotics</strong>, solving things through <strong>AI and Machine Learning</strong>, and solving brain-bending problems in <strong>competitive programming</strong>. <br><br>
-                When I'm not in front of a screen, you'll probably find me on the <strong>basketball court</strong>, flipping through a book, or throwing a punch or two in <strong>taekwondo</strong>!
-                Always up for a challenge — both on and off the mat!
-            </p>
-        </div>
+    <main class="hero-container">
+    <img src="img.png" alt="Abstract background design" class="hero-background-image">
+    <h1 id="typed-text">Hello, I'm Ananya!</h1> <div class="intro-text-hero"> <p>I'm an engineering student at IIT Guwahati, majoring in Electronics and Electrical Engineering.</p>
+        <p>I'm passionate about robotics, solving things through AI and Machine Learning, and solving brain-bending problems in competitive programming.</p>
+        <p>When I'm not in front of a screen, you'll probably find me on the basketball court, flipping through a book, or throwing a punch or two in taekwondo! Always up for a challenge</p>
     </div>
 
-    <main class="about-content" id="about-section">
-        <div class="about-info">
-            <h1>About me.....</h1>
-            <p>
-                 I'm Ananya Dongsarwar, born and raised in Pune, Maharashtra. I'm currently pursuing my B.Tech at IIT Guwahati, with a passion for all things Robotics, AI, and Machine Learning.
-                 When I'm not building bots or exploring the world of intelligent systems, you’ll probably find me shooting hoops, diving into a good book, or practicing Taekwondo — I'm a proud black belt!
-                 I'm always excited to connect, collaborate, and contribute to meaningful projects. Whether it's a new tech idea or a challenging problem to solve, I’m all ears!
-            </p>
-        </div>
-    </main>
+    <div class="circular-image-container-hero"> <img src="ananya.jpg" alt="Your Profile Picture" class="circular-image-hero">
+    </div>
+
+    <div class="image-caption-hero"> <p>Electronics and Electrical Engineering</p>
+        <p>IIT Guwahati</p>
+        <p>Ex Maygite</p>
+    </div>
+</main>
+
+    
+<section class="about-section" id="about-section">
+    <div class="about-info-box"> <h2 class="about-heading">About Me...</h2> <p>
+            I'm Ananya Dongsarwar, born and raised in Pune, Maharashtra. I'm currently pursuing my B.Tech at IIT Guwahati, with a passion for all things Robotics, AI, and Machine Learning.
+            When I'm not building bots or exploring the world of intelligent systems, you’ll probably find me shooting hoops, diving into a good book, or practicing Taekwondo — I'm a proud black belt!
+            I'm always excited to connect, collaborate, and contribute to meaningful projects. Whether it's a new tech idea or a challenging problem to solve, I’m all ears!
+        </p>
+    </div>
+</section>
 
     <section class="projects-section" id="projects-section">
         <div class="section-header">
             <h2 class="projects-heading">My Projects</h2>
-            <p class="projects-intro">Here are some of the projects I've worked on, showcasing my skills and interests.</p>
         </div>
         <div class="projects-grid">
             <div class="project-card">
@@ -147,22 +139,7 @@
         </div>
     </footer>
 
-    
-    <script>
-        const text = "Hello, I’m Ananya!";
-        let i = 0;
-        const speed = 100; // milliseconds
 
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typed-text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-
-        typeWriter();
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </body>

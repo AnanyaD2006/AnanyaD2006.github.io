@@ -7,8 +7,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll from absolute positioning */
 }
-
 
 * {
     margin: 0;
@@ -25,7 +25,9 @@ body {
     background: linear-gradient(135deg, #360a48, #360133);
 }
 
-/* Header container */
+/* ------------------------------------------------------------- */
+/* HEADER STYLES */
+/* ------------------------------------------------------------- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -43,8 +45,8 @@ body {
 /* Logo styling */
 .logo {
     font-family: 'Press Start 2P', cursive;
-    font-size: 20px; /* Using this font-size */
-    color: #907b9e; /* Using this color */
+    font-size: 20px;
+    color: #907b9e;
     text-decoration: none;
     text-shadow:
         1px 1px 0 #000,
@@ -61,7 +63,7 @@ body {
     font-size: 12px;
     color: #cccccc;
     font-family: 'Press Start 2P', cursive;
-    transition: color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
+    transition: color 0.3s ease, transform 0.3s ease;
     display: inline-block;
 }
 
@@ -72,253 +74,293 @@ body {
     text-shadow: 0 0 5px #747e95;
 }
 
-/* Hero section container */
+
+/* ------------------------------------------------------------- */
+/* HERO SECTION STYLES (Carefully positioned absolute elements) */
+/* ------------------------------------------------------------- */
 .hero-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative; /* Crucial for absolute children positioning */
+    width: 100%;
     min-height: 100vh;
-    position: relative;
-    padding-top: 80px; /* Adjust based on header height */
-    overflow: hidden;
-    /* No blend mode or opacity here to avoid affecting children globally */
+    overflow: hidden; /* Hide anything that goes outside */
+    padding-top: 80px; /* Space for fixed header */
+    background: linear-gradient(135deg, #360a48, #360133);
 }
 
-/* Specific styling for the large background image (img.png) */
-.hero-container img[src="img.png"] { /* Target img.png specifically */
+.hero-background-image {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 70%; /* Adjust as needed */
-    mix-blend-mode: soft-light; /* Apply blend mode only to this image */
+    mix-blend-mode: soft-light;
     opacity: 0.2;
     filter: blur(0.5px) brightness(1.1);
     z-index: 1; /* Below text and circular image */
     pointer-events: none;
 }
 
-/* Typed text styling */
+/* Typed Text (Hello, I'm Ananya!) */
 #typed-text {
-    margin-top: 1px; /* Adjust as needed */
-    text-align: center;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2.5rem;
-    color: #00bcd4;
-    position: absolute; /* Ensure it's positioned within hero-container */
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Above the background image */
-    white-space: nowrap; /* Prevent wrapping */
-}
-
-.intro-text {
-  position: absolute;
-  top: 55%;
-  left: 10%;
-  transform: translateY(-50%);
-  color: rgb(225, 164, 223);
-  font-size: 1.5rem;
-  max-width: 800px;
-  line-height: 1.6;
-}
-
-/* Circular image container */
-.circular-image-container {
     position: absolute;
-    top: 50%;
-    right: 5%; /* Adjust position from the right */
-    transform: translateY(-50%);
-    width: 300px; /* Adjust size as needed */
-    height: 300px; /* Must be the same as width for a perfect circle */
-    border-radius: 50%; /* Creates the circular shape */
-    overflow: hidden; /* Hides the part of the image outside the circle */
-    z-index: 3; /* Ensure it's above everything else */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
-    border: 3px solid #8a2be2; /* Optional border */
-    opacity: 1; /* Ensure full opacity */
-    mix-blend-mode: normal; /* Crucially set to normal for this container */
+    top: 25%; /* Initial desktop position */
+    left: 10%; /* Initial desktop position */
+    /* width: auto; controlled by font-size and nowrap */
+    z-index: 5;
+    text-align: left; /* Align to left within its potential width */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem; /* Initial desktop size */
+    color: #00bcd4;
+    white-space: nowrap; /* Keep text on one line for typing effect */
+    border-right: 0.15em solid #00bcd4; /* Cursor effect */
+    overflow: hidden; /* Hide text before typing */
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.8);
+    animation: typing 3.5s steps(20, end) forwards, blink-caret 0.75s step-end infinite; /* Adjusted steps */
 }
 
-/* Image inside circular container */
-.circular-image-container img {
+/* Intro Text below "Hello, I'm Ananya!" */
+.intro-text-hero {
+    position: absolute;
+    top: 55%; /* Initial desktop position */
+    left: 10%; /* Initial desktop position */
+    width: 45%; /* Initial desktop width */
+    max-width: 650px; /* Limit max width */
+    color: rgb(225, 164, 223);
+    font-size: 1.4em;
+    line-height: 1.6;
+    text-align: left;
+    z-index: 5;
+}
+.intro-text-hero p {
+    margin-bottom: 1em; /* Space between paragraphs */
+}
+
+
+/* Circular Image Container for Hero */
+.circular-image-container-hero {
+    position: absolute;
+    top: 45%; /* Initial desktop position */
+    right: 10%; /* Initial desktop position */
+    width: 250px; /* Fixed size */
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 6;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid #8a2be2;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.circular-image-hero {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image fills the circle without distortion */
-    /* No blend modes or filters here unless specifically desired for the circular image itself */
+    object-fit: cover;
 }
 
-
-.image-caption {
+/* Image Caption for Hero Image */
+.image-caption-hero {
     position: absolute;
-    top: calc(50% + 170px); /* Start below the image. 50% (image center) + half image height (100px) + some margin (15px) */
-    right:8.5%; 
-    transform: translateY(0); /* No vertical translation from here */
-    width: 200px; /* Same width as image container for alignment */
-    text-align: center; /* Align text to the right */
-    color: #f0def1; /* Use body text color or adjust */
-    font-family: "WDXL Lubrifont SC", sans-serif; /* A clear, retro-style font */
-    font-size: 1em; /* Adjust font size as needed */
-    line-height: 0.9;
-    z-index: 3; /* Ensure it's on top */
-    text-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Subtle glow */
-    animation: slideInFromBottom 1s ease-out 2.5s forwards; /* 1s duration, ease-out timing, stays at end state */
+    top: calc(45% + 250px + 15px); /* Position below image: image top + image height + margin */
+    right: 10%; /* Align with image's right position */
+    width: 250px; /* Same width as image for alignment */
+    text-align: center; /* Center the caption text */
+    color: #f0def1;
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 0.9em;
+    line-height: 1.2;
+    z-index: 6;
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+}
+.image-caption-hero p {
+    margin-bottom: 0.2em;
 }
 
-.image-caption p {
-    margin-bottom: 0.2em; /* Small spacing between lines */
+/* Animations for typing and blinking cursor */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00bcd4 }
 }
 
 
+/* ------------------------------------------------------------- */
+/* ABOUT SECTION STYLES (Simple central box as per screenshot) */
+/* ------------------------------------------------------------- */
+.about-section {
+    background: linear-gradient(135deg, #360133, #360a48);
+    padding: 100px 50px;
+    color: #f4c2f7;
+    display: flex;
+    justify-content: center; /* Center the content box horizontally */
+    align-items: center; /* Center the content box vertically if space allows */
+    min-height: 80vh; /* Ensure section takes up enough space */
+    padding-top: 100px; /* Adjust to clear fixed header */
+    text-align: center; /* General alignment for section */
+}
 
-.about-info {
+.about-info-box {
     background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
     padding: 40px;
     border-radius: 10px;
-    max-width: 600px; /* Limit width for better readability */
+    max-width: 800px; /* Limit width for better readability */
     width: 90%; /* Responsive width */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    margin-bottom: 60px; /* Add this line to push it down */
-    margin-left: auto; /* Keeps it responsive to the left */
-    margin-right: auto;
+    text-align: center; /* Center text within the box */
+    line-height: 1.6;
+    font-size: 1.1em;
 }
 
-.about-content {
-    min-height: calc(100vh - 80px); /* Full viewport height minus header height */
-    padding-top: 140px; /* To push content below the fixed header */
-    display: flex;
-    justify-content: center; /* Example: to center content if you add it later */
-    align-items: center; /* Example: to center content if you add it later */
-    flex-direction: column; /* Example: for stacking content */
+.about-heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.2em; /* Adjust size */
+    color: #8a2be2;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(138, 43, 226, 0.7);
 }
 
-.about-info p i {
-    margin-right: 15px; /* Space between icon and text */
-    color: #8a2be2; /* Icon color */
-    font-size: 1.4em; /* Larger icons */
-}
-
-.about-content p {
+.about-info-box p {
     color: #f4c2f7;
     font-family: "WDXL Lubrifont SC", sans-serif;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.about-info h1 {
-    text-align: center; /* Shift this header to the right */
+    margin-bottom: 1em; /* Space between paragraphs in the about box */
 }
 
 
-
-/* NEW SEPARATE FOOTER STYLES */
 /* ------------------------------------------------------------- */
-.site-footer {
-    background-color: #000; /* Solid black background like the example */
+/* PROJECTS SECTION STYLES (Kept from previous, responsive) */
+/* ------------------------------------------------------------- */
+.projects-section {
+    background: linear-gradient(135deg, #360a48, #360133);
+    padding: 100px 50px;
     color: #f4c2f7;
-    padding: 60px 50px 30px; /* Top, Left/Right, Bottom padding */
-    display: flex;
-    flex-direction: column; /* Stack main content area and copyright */
-    align-items: center; /* Center content horizontally */
-    margin-top: 100px; /* Space above the footer section from the content above (contact section) */
+    text-align: center;
+    margin-top: 0;
+    padding-top: 100px;
 }
 
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px; /* Limit content width */
-    gap: 40px;
-    margin-bottom: 40px; /* Space below content before the line */
-}
-
-.footer-left-content {
-    flex: 2;
-    min-width: 280px;
-    padding-right: 20px;
-}
-
-.footer-name {
+.projects-heading {
     font-family: 'Press Start 2P', cursive;
-    font-size: 24px;
-    color: #fff; /* White color for consistency with example */
+    font-size: 2.8em;
+    color: #00bcd4;
     margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
 }
 
-.footer-tagline {
+.projects-intro {
     font-family: "WDXL Lubrifont SC", sans-serif;
     font-size: 1.1em;
-    line-height: 1.6;
-    color: #ccc;
+    color: #cccccc;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.5;
 }
 
-.footer-right-content {
-    flex: 1;
-    min-width: 200px;
-    text-align: right; /* Align content to the right */
-}
-
-.footer-social-title {
-    font-family: 'Press Start 2P', cursive; /* Assuming you want this font for headings */
-    font-size: 1.4em;
-    color: #fff; /* White color for consistency with example */
-    margin-bottom: 25px;
-}
-
-.footer-social-icons {
-    display: flex;
-    justify-content: flex-end; /* Align icons to the right */
-    gap: 25px;
-}
-
-.footer-social-icons a {
-    color: #fff; /* White icons */
-    font-size: 2.2em;
-    transition: transform 0.3s ease, color 0.3s ease;
-    text-decoration: none;
-}
-
-.footer-social-icons a:hover {
-    transform: scale(1.2) translateY(-3px);
-    color: #00bcd4; /* Change color on hover */
-}
-
-.footer-bottom-line {
-    width: 100%;
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
     max-width: 1200px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle line */
-    margin-bottom: 20px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.contact-form-section {
-    background: linear-gradient(135deg, #360a48, #360133); /* Consistent with body/other sections */
-    padding: 100px 20px; /* Top/bottom padding, and some horizontal padding */
-    min-height: 80vh; /* Ensure it takes up a good amount of vertical space */
+.project-card {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically if space allows */
-    color: #f4c2f7; /* Default text color */
-    margin-top: 0; /* Ensures it directly follows the previous section or has controlled margin */
-    padding-top: 100px; /* Adjust this to clear fixed header when scrolled to */
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.project-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.6em;
+    color: #8a2be2;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.4);
+}
+
+.project-description {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1em;
+    color: #f0def1;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.project-links {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.project-link {
+    background-color: #00bcd4;
+    color: #180a18;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-link:hover {
+    background-color: #00a0b0;
+    transform: translateY(-2px);
+}
+
+.project-link i {
+    font-size: 1em;
+}
+
+
+/* ------------------------------------------------------------- */
+/* CONTACT FORM SECTION STYLES (Kept from previous, responsive) */
+/* ------------------------------------------------------------- */
+.contact-form-section {
+    background: linear-gradient(135deg, #360a48, #360133);
+    padding: 100px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #f4c2f7;
+    margin-top: 0;
+    padding-top: 100px;
 }
 
 .contact-form-container {
-    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background for the form box */
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 40px 30px;
     border-radius: 10px;
-    max-width: 600px; /* Limit width for readability */
-    width: 100%; /* Take full width up to max-width */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    text-align: center; /* Center heading and intro text */
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .contact-form-heading {
     font-family: 'Press Start 2P', cursive;
     font-size: 2.2em;
-    color: #00bcd4; /* Accent color */
+    color: #00bcd4;
     margin-bottom: 20px;
     text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
 }
@@ -334,24 +376,23 @@ body {
 .main-contact-form {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Space between form groups */
-    align-items: center; /* Center form elements */
+    gap: 25px;
+    align-items: center;
 }
 
 .form-group {
-    width: 100%; /* Take full width of the container */
-    text-align: left; /* Align labels/inputs to the left within their group */
+    width: 100%;
+    text-align: left;
 }
 
 .form-group label {
-    display: block; /* Make labels take full width */
+    display: block;
     margin-bottom: 8px;
     font-family: "WDXL Lubrifont SC", sans-serif;
     color: #f4c2f7;
     font-size: 1em;
 }
 
-/* Visually hidden class for accessibility */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -368,31 +409,31 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 15px;
-    border: 1px solid #8a2be2; /* Border color */
+    border: 1px solid #8a2be2;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
-    color: #f4c2f7; /* Text color inside input */
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #f4c2f7;
     font-family: "WDXL Lubrifont SC", sans-serif;
     font-size: 1em;
-    box-sizing: border-box; /* Include padding in element's total width */
+    box-sizing: border-box;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #999999; /* Placeholder text color */
+    color: #999999;
     opacity: 0.8;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #00bcd4; /* Highlight border on focus */
+    border-color: #00bcd4;
     box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
 }
 
 .submit-button {
-    background-color: #8a2be2; /* Purple button background */
-    color: #ffffff; /* White text */
+    background-color: #8a2be2;
+    color: #ffffff;
     padding: 15px 40px;
     border: none;
     border-radius: 5px;
@@ -400,109 +441,418 @@ body {
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px; /* Space above the button */
+    margin-top: 15px;
 }
 
 .submit-button:hover {
-    background-color: #9a4cd2; /* Slightly lighter purple on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-.projects-section {
-    background: linear-gradient(135deg, #360133, #360a48); /* Consistent background */
-    padding: 100px 50px; /* Ample padding */
-    color: #f4c2f7;
-    text-align: center; /* Center the heading and intro text */
-    margin-top: 0; /* Ensures it follows the previous section without extra space */
-    padding-top: 100px; /* Adjust to ensure fixed header doesn't hide content on scroll to this section */
-}
-
-.projects-heading {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2.8em;
-    color: #00bcd4; /* Accent color */
-    margin-bottom: 20px;
-    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
-}
-
-.projects-intro {
-    font-family: "WDXL Lubrifont SC", sans-serif;
-    font-size: 1.1em;
-    color: #cccccc;
-    max-width: 800px;
-    margin: 0 auto 60px auto; /* Center and add space below intro */
-    line-height: 1.5;
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 40px; /* Space between cards */
-    max-width: 1200px; /* Max width for the grid container */
-    margin: 0 auto; /* Center the grid */
-    padding: 20px;
-}
-
-.project-card {
-    background-color: rgba(0, 0, 0, 0.4); /* Dark semi-transparent background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    text-align: left; /* Align content inside card to left */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Push links to bottom */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-10px); /* Lift effect on hover */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-}
-
-.project-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.6em;
-    color: #8a2be2; /* Purple accent for title */
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px rgba(138, 43, 226, 0.4);
-}
-
-.project-description {
-    font-family: "WDXL Lubrifont SC", sans-serif;
-    font-size: 1em;
-    color: #f0def1;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1; /* Allows description to take available space */
-}
-
-.project-links {
-    margin-top: 15px; /* Space above links */
-    display: flex;
-    flex-wrap: wrap; /* Allow links to wrap */
-    gap: 15px; /* Space between links */
-}
-
-.project-link {
-    background-color: #00bcd4; /* Accent color for buttons */
-    color: #180a18; /* Dark text for contrast */
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-flex; /* Align icon and text */
-    align-items: center;
-    gap: 8px; /* Space between text and icon */
-}
-
-.project-link:hover {
-    background-color: #00a0b0; /* Darker on hover */
+    background-color: #9a4cd2;
     transform: translateY(-2px);
 }
 
-.project-link i {
-    font-size: 1em; /* Icon size relative to text */
+
+/* ------------------------------------------------------------- */
+/* FOOTER STYLES (Kept from previous, responsive) */
+/* ------------------------------------------------------------- */
+.site-footer {
+    background-color: #000;
+    color: #f4c2f7;
+    padding: 60px 50px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-left-content {
+    flex: 2;
+    min-width: 280px;
+    padding-right: 20px;
+}
+
+.footer-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer-tagline {
+    font-family: "WDXL Lubrifont SC", sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-right-content {
+    flex: 1;
+    min-width: 200px;
+    text-align: right;
+}
+
+.footer-social-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.4em;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+.footer-social-icons a {
+    color: #fff;
+    font-size: 2.2em;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+    transform: scale(1.2) translateY(-3px);
+    color: #00bcd4;
+}
+
+.footer-bottom-line {
+    width: 100%;
+    max-width: 1200px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------------------------------- */
+/* MEDIA QUERIES FOR RESPONSIVENESS (Adjusting absolute positions for Hero) */
+/* ------------------------------------------------------------- */
+
+/* Larger Desktops / Widescreen Monitors (1200px and up) - Original Layout Focus */
+@media (min-width: 1201px) {
+    #typed-text {
+        font-size: 3rem;
+        top: 25%;
+        left: 10%;
+        text-align: left;
+        transform: translateX(0); /* Remove center transform */
+    }
+
+    .intro-text-hero {
+        top: 50%; /* Adjusted slightly to be lower and more aligned with image top */
+        left: 10%;
+        width: 45%;
+        font-size: 1.4em;
+        text-align: left;
+    }
+
+    .circular-image-container-hero {
+        top: 45%; /* Match original image position */
+        right: 10%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .image-caption-hero {
+        top: calc(45% + 250px + 15px); /* Below image */
+        right: 10%;
+        width: 250px;
+        font-size: 0.9em;
+        text-align: center;
+    }
+}
+
+/* Tablets in landscape, small laptops (up to 1200px and down to 768px) */
+@media (max-width: 1200px) {
+    /* Header */
+    .header {
+        padding: 25px 4%;
+    }
+    .logo {
+        font-size: 1.8em;
+    }
+    .navbar a {
+        margin-left: 20px;
+        font-size: 0.95em;
+    }
+
+    /* Hero Section Adjustments */
+    #typed-text {
+        font-size: 2.5rem;
+        top: 20%;
+        left: 5%; /* Slightly closer to edge */
+    }
+
+    .intro-text-hero {
+        top: 40%; /* Move up */
+        left: 5%;
+        width: 50%; /* Wider relative width */
+        font-size: 1.2em;
+        text-align: left;
+    }
+
+    .circular-image-container-hero {
+        top: 35%; /* Move up */
+        right: 5%;
+        width: 220px;
+        height: 220px;
+    }
+
+    .image-caption-hero {
+        top: calc(35% + 220px + 10px);
+        right: 5%;
+        width: 220px;
+        font-size: 0.8em;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 80px 30px;
+    }
+    .about-info-box {
+        padding: 35px;
+        font-size: 1.1em;
+    }
+    .about-heading {
+        font-size: 2em;
+    }
+
+    /* Projects */
+    .projects-section {
+        padding: 80px 30px;
+    }
+    .projects-grid {
+        gap: 30px;
+    }
+    .project-card {
+        padding: 25px;
+    }
+}
+
+/* Phones and small tablets (up to 768px and down to 480px) */
+@media (max-width: 768px) {
+    /* Header */
+    .header {
+        padding: 15px 3%;
+    }
+    .logo {
+        font-size: 1.4em;
+    }
+    .navbar { /* You will likely want to implement a hamburger menu here */
+        display: none;
+    }
+
+    /* Hero Section Adjustments (Stacking elements more centrally) */
+    .hero-container {
+        display: flex; /* Enable flex for better vertical distribution */
+        flex-direction: column;
+        justify-content: flex-start; /* Start from top */
+        align-items: center; /* Center horizontally */
+        padding-top: 60px; /* Adjust for header */
+        min-height: 120vh; /* Make it taller to accommodate stacked elements */
+    }
+
+    #typed-text {
+        position: relative; /* Change to relative for stacking */
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 90%; /* Take up more width */
+        font-size: 2rem;
+        margin-top: 50px; /* Space from header/top */
+        margin-bottom: 30px;
+        text-align: center; /* Center text when stacked */
+        white-space: normal; /* Allow text to wrap on small screens */
+        border-right: none; /* Remove cursor effect on wrap */
+        animation: none; /* Disable typing animation on smaller screens if wrapping occurs */
+    }
+
+    .intro-text-hero {
+        position: relative; /* Change to relative for stacking */
+        top: auto;
+        left: auto;
+        width: 90%;
+        max-width: 500px; /* Max width for readability */
+        font-size: 0.95em;
+        margin-bottom: 30px;
+        text-align: center; /* Center text when stacked */
+    }
+
+    .circular-image-container-hero {
+        position: relative; /* Change to relative for stacking */
+        top: auto;
+        right: auto;
+        left: auto;
+        transform: none;
+        width: 180px;
+        height: 180px;
+        margin-bottom: 20px; /* Space below image */
+    }
+
+    .image-caption-hero {
+        position: relative; /* Change to relative for stacking */
+        top: auto;
+        right: auto;
+        left: auto;
+        transform: none;
+        width: 180px; /* Maintain width for alignment */
+        font-size: 0.8em;
+        margin-bottom: 40px; /* Space below caption */
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 60px 15px;
+    }
+    .about-info-box {
+        padding: 25px;
+        font-size: 0.9em;
+    }
+    .about-heading {
+        font-size: 1.8em;
+    }
+
+    /* Projects */
+    .projects-section {
+        padding: 60px 15px;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        max-width: 350px;
+    }
+    .project-card {
+        padding: 18px;
+    }
+    .project-title {
+        font-size: 1.2em;
+    }
+    .project-links {
+        flex-direction: column; /* Stack buttons */
+        gap: 10px;
+    }
+
+    /* Contact form */
+    .contact-form-container {
+        max-width: 350px;
+    }
+    .contact-form-heading {
+        font-size: 1.8em;
+    }
+    .contact-form-intro {
+        font-size: 0.9em;
+    }
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9em;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 40px 15px 20px;
+    }
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .footer-right-content {
+        text-align: center;
+    }
+    .footer-social-icons {
+        justify-content: center;
+    }
+}
+
+/* Extra small phones (up to 480px) */
+@media (max-width: 480px) {
+    /* Header */
+    .logo {
+        font-size: 1.1em;
+    }
+
+    /* Hero Section */
+    #typed-text {
+        font-size: 1.5rem;
+        margin-top: 40px;
+    }
+    .intro-text-hero {
+        font-size: 0.8em;
+        margin-bottom: 20px;
+    }
+    .circular-image-container-hero {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 15px;
+    }
+    .image-caption-hero {
+        width: 130px;
+        font-size: 0.7em;
+        margin-bottom: 30px;
+    }
+
+    /* About Section */
+    .about-info-box {
+        padding: 20px;
+        font-size: 0.8em;
+    }
+    .about-heading {
+        font-size: 1.5em;
+    }
+
+    /* Projects */
+    .project-card {
+        padding: 15px;
+    }
+    .project-title {
+        font-size: 1.1em;
+    }
+    .project-description {
+        font-size: 0.8em;
+    }
+    .project-link {
+        font-size: 0.7em;
+        padding: 6px 10px;
+    }
+
+    /* Contact Form */
+    .contact-form-container {
+        max-width: 300px;
+        padding: 20px 10px;
+    }
+    .contact-form-heading {
+        font-size: 1.5em;
+    }
+    .contact-form-intro {
+        font-size: 0.8em;
+    }
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.8em;
+    }
+    .submit-button {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+
+    /* Footer */
+    .footer-name {
+        font-size: 16px;
+    }
+    .footer-tagline {
+        font-size: 0.75em;
+    }
+    .footer-social-title {
+        font-size: 1em;
+    }
+    .footer-social-icons a {
+        font-size: 1.8em;
+    }
 }
