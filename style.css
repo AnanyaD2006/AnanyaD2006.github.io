@@ -1,4 +1,3 @@
-/* Reset default browser styles */
 html {
     scroll-behavior: smooth;
 }
@@ -25,9 +24,7 @@ body {
     background: linear-gradient(135deg, #360a48, #360133);
 }
 
-/* ------------------------------------------------------------- */
 /* HEADER STYLES */
-/* ------------------------------------------------------------- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -75,9 +72,7 @@ body {
 }
 
 
-/* ------------------------------------------------------------- */
 /* HERO SECTION STYLES (Carefully positioned absolute elements) */
-/* ------------------------------------------------------------- */
 .hero-container {
     position: relative; /* Crucial for absolute children positioning */
     width: 100%;
@@ -103,8 +98,8 @@ body {
 /* Typed Text (Hello, I'm Ananya!) */
 #typed-text {
     position: absolute;
-    top: 25%; /* Initial desktop position */
-    left: 10%; /* Initial desktop position */
+    top: 25%; 
+    left: 10%; 
     /* width: auto; controlled by font-size and nowrap */
     z-index: 5;
     text-align: left; /* Align to left within its potential width */
@@ -115,16 +110,16 @@ body {
     border-right: 0.15em solid #00bcd4; /* Cursor effect */
     overflow: hidden; /* Hide text before typing */
     text-shadow: 0 0 15px rgba(0, 188, 212, 0.8);
-    animation: typing 3.5s steps(20, end) forwards, blink-caret 0.75s step-end infinite; /* Adjusted steps */
+    animation: typing 3.5s steps(20, end) forwards, blink-caret 0.75s step-end infinite; 
 }
 
 /* Intro Text below "Hello, I'm Ananya!" */
 .intro-text-hero {
     position: absolute;
-    top: 55%; /* Initial desktop position */
-    left: 10%; /* Initial desktop position */
-    width: 45%; /* Initial desktop width */
-    max-width: 650px; /* Limit max width */
+    top: 55%; 
+    left: 10%; 
+    width: 45%; 
+    max-width: 650px; 
     color: rgb(225, 164, 223);
     font-size: 1.4em;
     line-height: 1.6;
@@ -139,8 +134,8 @@ body {
 /* Circular Image Container for Hero */
 .circular-image-container-hero {
     position: absolute;
-    top: 45%; /* Initial desktop position */
-    right: 10%; /* Initial desktop position */
+    top: 45%; 
+    right: 10%; 
     width: 250px; /* Fixed size */
     height: 250px;
     border-radius: 50%;
@@ -161,9 +156,9 @@ body {
 .image-caption-hero {
     position: absolute;
     top: calc(45% + 250px + 15px); /* Position below image: image top + image height + margin */
-    right: 10%; /* Align with image's right position */
-    width: 250px; /* Same width as image for alignment */
-    text-align: center; /* Center the caption text */
+    right: 10%; 
+    width: 250px; 
+    text-align: center; 
     color: #f0def1;
     font-family: "WDXL Lubrifont SC", sans-serif;
     font-size: 0.9em;
@@ -185,10 +180,8 @@ body {
     50% { border-color: #00bcd4 }
 }
 
-
-/* ------------------------------------------------------------- */
 /* ABOUT SECTION STYLES (Simple central box as per screenshot) */
-/* ------------------------------------------------------------- */
+
 .about-section {
     background: linear-gradient(135deg, #360133, #360a48);
     padding: 100px 50px;
@@ -198,7 +191,7 @@ body {
     align-items: center; /* Center the content box vertically if space allows */
     min-height: 80vh; /* Ensure section takes up enough space */
     padding-top: 100px; /* Adjust to clear fixed header */
-    text-align: center; /* General alignment for section */
+    text-align: center; 
 }
 
 .about-info-box {
@@ -208,7 +201,7 @@ body {
     max-width: 800px; /* Limit width for better readability */
     width: 90%; /* Responsive width */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
-    text-align: center; /* Center text within the box */
+    text-align: center; 
     line-height: 1.6;
     font-size: 1.1em;
 }
@@ -228,9 +221,7 @@ body {
 }
 
 
-/* ------------------------------------------------------------- */
-/* PROJECTS SECTION STYLES (Kept from previous, responsive) */
-/* ------------------------------------------------------------- */
+/* PROJECTS SECTION STYLES  */
 .projects-section {
     background: linear-gradient(135deg, #360a48, #360133);
     padding: 100px 50px;
@@ -331,9 +322,8 @@ body {
 }
 
 
-/* ------------------------------------------------------------- */
-/* CONTACT FORM SECTION STYLES (Kept from previous, responsive) */
-/* ------------------------------------------------------------- */
+
+/* CONTACT FORM SECTION STYLES  */
 .contact-form-section {
     background: linear-gradient(135deg, #360a48, #360133);
     padding: 100px 20px;
@@ -450,9 +440,9 @@ body {
 }
 
 
-/* ------------------------------------------------------------- */
+
 /* FOOTER STYLES (Kept from previous, responsive) */
-/* ------------------------------------------------------------- */
+
 .site-footer {
     background-color: #000;
     color: #f4c2f7;
@@ -531,9 +521,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* ------------------------------------------------------------- */
-/* MEDIA QUERIES FOR RESPONSIVENESS (Adjusting absolute positions for Hero) */
-/* ------------------------------------------------------------- */
+
+/* MEDIA QUERIES */
 
 /* Larger Desktops / Widescreen Monitors (1200px and up) - Original Layout Focus */
 @media (min-width: 1201px) {
@@ -645,7 +634,7 @@ body {
     .logo {
         font-size: 1.4em;
     }
-    .navbar { /* You will likely want to implement a hamburger menu here */
+    .navbar { 
         display: none;
     }
 
@@ -653,9 +642,9 @@ body {
     .hero-container {
         display: flex; /* Enable flex for better vertical distribution */
         flex-direction: column;
-        justify-content: flex-start; /* Start from top */
-        align-items: center; /* Center horizontally */
-        padding-top: 60px; /* Adjust for header */
+        justify-content: flex-start; 
+        align-items: center; 
+        padding-top: 60px; 
         min-height: 120vh; /* Make it taller to accommodate stacked elements */
     }
 
@@ -666,11 +655,11 @@ body {
         transform: none;
         width: 90%; /* Take up more width */
         font-size: 2rem;
-        margin-top: 50px; /* Space from header/top */
+        margin-top: 50px; 
         margin-bottom: 30px;
         text-align: center; /* Center text when stacked */
-        white-space: normal; /* Allow text to wrap on small screens */
-        border-right: none; /* Remove cursor effect on wrap */
+        white-space: normal; 
+        border-right: none; 
         animation: none; /* Disable typing animation on smaller screens if wrapping occurs */
     }
 

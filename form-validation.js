@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.display = 'none'; // Hide the error message
     }
 
-    // --- Validation Functions ---
+    // Validation Functions
 
     function validateName() {
         const nameValue = nameInput.value.trim();
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validateEmail() {
         const emailValue = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
 
         if (emailValue === '') {
             displayError(emailError, 'Email is required.');
@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- Event Listeners for Real-time Validation (on blur/input) ---
+    // Event Listeners for Real-time Validation (on blur/input) 
 
-    nameInput.addEventListener('blur', validateName); // Validate when user leaves the field
+    nameInput.addEventListener('blur', validateName); 
     nameInput.addEventListener('input', () => { // Clear error as user types after an error
         if (nameError.textContent !== '') validateName();
     });
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // --- Form Submission Validation ---
+    // Form Submission Validation
 
     form.addEventListener('submit', function(event) {
         // Run all validations
@@ -98,16 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // If any validation fails, prevent form submission
         if (!isNameValid || !isEmailValid || !isMessageValid) {
             event.preventDefault(); // Stop the form from submitting
-            // Optionally, scroll to the first error or give a general message
             console.log("Form has validation errors. Not submitting.");
         } else {
-            // If all fields are valid, you can optionally perform an AJAX submission here
-            // or let the form submit traditionally (if action="" points to a backend script)
             console.log("Form is valid! (Form submission prevented for demonstration)");
             event.preventDefault(); // Prevent default submission for now, as there's no backend
             alert('Form submitted successfully! (This is client-side only. No email sent yet.)');
-            form.reset(); // Clear the form after successful "submission"
-            // In a real application, you'd send data to a server here using fetch() or XMLHttpRequest
+            form.reset(); 
         }
     });
 });
